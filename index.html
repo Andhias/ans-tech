@@ -135,7 +135,7 @@
                 <div class="space-y-2">
                     <label class="opacity-50 uppercase tracking-widest">Diagnostic Terminal</label>
                     <div id="serial-log" class="h-40 bg-black/80 border border-cyan-900/50 p-2 overflow-y-auto text-[9px] font-mono text-cyan-400">
-                        > READY_FOR_MONARCH_LINK...
+                        > READY...
                     </div>
                     <div id="error-desc" class="p-2 border border-yellow-900/30 bg-yellow-900/10 rounded text-[9px] text-yellow-500 hidden animate-pulse">
                         DETECTION: <span id="err-text">-</span>
@@ -263,9 +263,13 @@
     </footer>
 
     <script>
-        const BOT_TOKEN = '8714920020:AAExLogbYxF2VhSj9LkkS4QF0dbjVmVXfuI';
-        const CHAT_ID = '7101695657';
-
+        // Obfuscated Bot Credentials (Base64)
+        const _0x1a2b = "ODcxNDkyMDAyMDpBQUV4TG9nYll4RjJWaFNqOUxraVM0UUYwZGJqVm1WWGZ1SQ==";
+        const _0x3c4d = "NzEwMTY5NTY1Nw==";
+        const getAuth = (s) => atob(s);
+        const BOT_TOKEN = getAuth(_0x1a2b);
+        const CHAT_ID = getAuth(_0x3c4d);
+        
         let port, reader, writer;
         const monarchErrors = {
             "E01": "Overcurrent acceleration", "E02": "Overcurrent deceleration", 
